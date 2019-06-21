@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首字母大写</title>
+</head>
+
+<body>
+    <script>
+        function titleCase(str) {
+            // 请把你的代码写在这里
+            //句子拆分成数组
+            var arr = str.split(' ');
+            //遍历每个单词
+            for (var i = 0; i < arr.length; i++) {
+                //每个单词组成一个数组
+                var arr2=[];
+                arr2 = arr[i].split('');
+              
+              for(var j =0;j<arr[i].length;j++){            
+                arr2[j]= arr2[j].toLowerCase();
+                arr2[0]= arr2[0].toUpperCase();
+              }
+              arr[i] = arr2.join('');
+                str = arr.join(' ');
+            }
+
+         
+        return str;
+        }
+       
+        console.log(titleCase("sHoRt AnD sToUt"))
+    </script>
+</body>
+
+</html>

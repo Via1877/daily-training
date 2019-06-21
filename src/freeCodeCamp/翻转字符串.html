@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id="input" type="text" onchange="">
+    <button id="btn" onclick="reverseStr()">翻转</button>
+    <p>结果：<span id="result"></span> </p>
+    <script>
+        function reverseStr(){
+            var oinput = document.querySelector('#input').value; 
+            var ostr = oinput.split('').reverse().join('');
+            document.querySelector('#result').innerHTML = ostr;
+        }    
+        
+    </script>
+</body>
+</html>

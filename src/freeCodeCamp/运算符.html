@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>运算符</title>
+</head>
+<body>
+    <p>I=10,j=12,i+j= <span class="result"></span> </p>
+    <p> <button onclick="mysum();">点击获取结果</button> </p>
+    <p>比较运算符，返回得是布尔值</p>
+    <script>
+    function mysum(){
+        var i=10;
+        var j= "2" ;
+ 
+        document.getElementsByClassName('result')[0].innerHTML= "<br/>" + i+j;
+        
+    }
+    var a = "";//string
+    var b = null;//object
+    a==b;//false
+    document.write(a==b)
+    </script>
+</body>
+</html>

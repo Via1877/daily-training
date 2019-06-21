@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,33 @@
 </head>
 
 <body>
+    <p>学习于张鑫旭老师的 <a
+            href="https://www.zhangxinxu.com/wordpress/2010/04/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E6%8F%92%E5%85%A5%E8%AF%9D%E9%A2%98%E5%90%8E%E9%83%A8%E5%88%86%E6%96%87%E5%AD%97%E9%80%89%E4%B8%AD%E7%9A%84js%E5%AE%9E%E7%8E%B0/">新浪微博插入话题后部分文字选中的js实现</a>
+    </p>
+    <p>关于更多的 Range <a href="http://www.zhangxinxu.com/wordpress/?p=1591">JS Range HTML文档/文字内容选中、库及应用介绍</a> </p>
+    <pre>
+    <code>
+            if (obj.createTextRange) { //ie
+                var range = obj.createTextRange();
+                range.moveStart('character', 1);
+                range.moveEnd('character', 8);
+                range.select();
+    
+            } else { //非ie
+                obj.setSelectionRange(1, 8);
+                obj.focus();
+            }
+    </code>
+            
+</pre>
     <div>
-        <form>
-            <textarea name="" id="textarea" cols="30" rows="10" ></textarea>
-            <button class="btn" type="button" onclick="textSelect('textarea',1,9)">话题</button>
-        </form>
+
+        <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+        <button class="btn" type="button" onclick="textSelect('textarea',1,9)">话题</button>
+
     </div>
     <script>
-        //兼容
+        // 兼容
         // if (obj.createTextRange) { //ie
         //     var range = obj.createTextRange();
         //     range.moveStart('character', 1);
@@ -28,51 +48,52 @@
         // }
 
         //选中封装
-        function textSelect(id,a,b){
+        function textSelect(id, a, b) {
             var o = document.getElementById(id);
-            o.innerText="#请在这里输入话题#";
+            o.innerText = "#请在这里输入话题#";
             //o是当前对象ID，例如文本域对象
             //a是起始位置，b是终点位置
-            var a = parseInt(a,10),b=parseInt(b,10);
-            var l=o.value.length;
-            if(l){
+            var a = parseInt(a, 10),
+                b = parseInt(b, 10);
+            var l = o.value.length;
+            if (l) {
                 //如果非数值，则表示从起始位置选择到结束位置
-                if(!a){
-                    a=0;
+                if (!a) {
+                    a = 0;
                 };
-                if(!b){
-                    b=0;
+                if (!b) {
+                    b = 0;
                 };
                 //如果值超过长度，则就是当前对象值得长度
-                if(a>l){
-                    a=l;
+                if (a > l) {
+                    a = l;
                 };
-                if(b>l){
-                    b=l;
+                if (b > l) {
+                    b = l;
                 };
                 //如果值为负值，则与长度值相加
-                if(a<0){
-                    a=a+l;
+                if (a < 0) {
+                    a = a + l;
                 };
-                if(b<0){
-                    b=b+l;
+                if (b < 0) {
+                    b = b + l;
                 };
-                if(o.createTextRange){
+                if (o.createTextRange) {
                     var range = o.createTextRange();
-                    range.moveStart("character",-l);
-                    range.moveEnd('charactor',-l);
-                    range.moveStart("charactor",a);
-                    range.moveEnd('charactor',b);
+                    range.moveStart("character", -l);
+                    range.moveEnd('charactor', -l);
+                    range.moveStart("charactor", a);
+                    range.moveEnd('charactor', b);
                     range.select();
-                }else{
-                    o.setSelectionRange(a,b);
+                } else {
+                    o.setSelectionRange(a, b);
                     o.focus();
 
                 }
             };
 
         }
-      //  textSelect('textarea',1,9)
+        //  textSelect('textarea',1,9)
     </script>
 </body>
 

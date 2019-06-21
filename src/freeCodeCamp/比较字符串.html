@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function mutation(arr){
+        var newArr = arr.map(function(e){
+            return  e.toLowerCase();
+        });
+        
+        var temp =  newArr[1].split('').map(function(e){
+            return newArr[0].indexOf(e)>=0;  
+        })
+        var a = temp.every(function isTrue(a){
+        return a===true;
+        })
+        console.log(a)
+     
+    } 
+    
+    mutation(["hello", "hey"]);
+    mutation( ["hello", "Hello"]);
+    </script>
+</body>
+</html>

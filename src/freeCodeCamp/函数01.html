@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="pid" ></p>
+    <script>
+        function demo(a,b){
+            var sum = a+b;
+            document.write(sum) 
+        }
+        demo(10,20)
+        function demo2(){
+            console.log("会执行吗1")//会
+            return "hello"
+            console.log("会执行吗2")//不会
+        }
+        var vl = demo2();
+        console.log(vl)
+        function demo3(a,b){
+            if(a>b){
+                return "a比较大";
+            }else{
+                return "B比较大";
+            }
+        }
+       // var vl3 = demo3(39,8);
+        document.getElementById('pid').innerHTML=demo3(39,8);
+        //console.log(vl3)
+        function demo4(a,b){
+            
+            return a+b;
+        }
+        var vl1 = demo4(20,3);
+        var vl2 = demo4(33,9);
+        var vl3 = demo4(3,12);
+        document.write("<br/>"+vl1+"<br/>"+vl2+"<br/>"+vl3)
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>factorial</title>
+</head>
+<body>
+    <input id="input" type="text" onchange="" value="only num">
+    <button id="btn" >阶乘</button>
+    <p>结果：<span id="result"></span> </p>
+    <script>
+        //方法1
+        document.querySelector('#btn').addEventListener('click',factorial);
+        function factorial(){
+            var oinput = document.querySelector('#input').value; 
+            var rel=1;
+            for(;oinput>0;oinput--){
+                rel = rel* oinput;
+            }
+            document.querySelector('#result').innerHTML = rel;
+        }    
+        //方法2
+        document.querySelector('#btn').addEventListener('click',factorial);
+
+    </script>
+</body>
+</html>

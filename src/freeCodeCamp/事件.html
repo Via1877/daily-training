@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 点击事件 -->
+    <button onclick="demo()"> 按钮 </button>
+    <script>
+        function demo(){
+            alert('Hello')
+        }
+    </script>
+    <!--  -->
+    <div class="div" onmouseout=" onOut(this)" onmouseover="onOver(this)"></div>
+    <!-- this指向当前函数 -->
+    <script>
+        function onOver(ooj){
+            ooj.innerHTML = "over"
+        };
+        function onOut(ooj){
+            ooj.innerHTML = "out"
+        };
+    </script>
+    <!-- 内容改变 -->
+    <input type="text" onchange="changeDemo1(this)">
+    <br/>
+    <input type="text" onselect="changeDemo2(this)">
+    <br/>
+    <input type="text" onfocus="changeDemo3(this)">
+
+    <br/>
+    <script>
+        function changeDemo1(bg){
+            console.log('内容改变了')
+
+        };
+        function changeDemo2(bg){
+           
+           bg.style.background="red";
+        };
+        function changeDemo3(bg){
+           
+           bg.style.background="blue";
+        };
+    </script>
+</body>
+</html>

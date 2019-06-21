@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //第一题
+        var div = document.createElement('div');
+        div.style.width=150+"px";
+        div.style.height= 300+'px';
+        document.body.appendChild(div);
+
+        //第二题
+        div.style.background= 'linear-gradient(to bottom right, red, blue, red)';
+        div.style.backgroundSize='  150% 200%';
+     
+        //第三题
+      
+        function changeColor(){        
+            div.style.backgroundSize='  220% 200%';
+            div.style.backgroundPositionX="100%";
+            div.style.backgroundPositionY="100%";
+            div.style.transition='all  1s';       
+        }
+        var btn = document.createElement('button');
+        btn.innerText="改变颜色";
+        document.body.appendChild(btn);
+        btn.addEventListener('click',changeColor);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="des"></div>
+    <script>
+      var str = "这个 function 接收多个参数。第一个参数为数组 arr，即为需要操作的原数组。后续的参数均表示需要删除的元素。返回值为操作后的数组比如接收的是 [1, 2, 3, 1, 2, 3] 与 2, 3，那么返回值为 [1, 1]。需要注意的是，如果分割的过程出现剩余，那么返回值的最后一个数组会比较短。比如接收的是 [1, 2, 3] 与 2，那么输出就是 [[1, 2], [3]]";
+      var strArr = str.split('。');
+      for(var i=0;i<strArr.length;i++){
+         var p = document.createElement('p');
+         p.innerHTML=strArr[i];
+         document.querySelector('.des').appendChild(p)
+      }
+        
+      function destroyer(a) {
+        // 请把你的代码写在这里
+            var arr = arguments[0];
+            var args = [].slice.call(arguments); //[Array(6), 2, 3]
+            console.log( args);
+     }
+
+        destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+    </script>
+</body>
+
+</html>

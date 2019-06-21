@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function largestOfFour(arr) {
+            // 请把你的代码写在这里\
+            var arr2 = [];
+            for (var i = 0; i < arr.length; i++) {
+                //console.log(arr[i]);
+                var maxNum = arr[i][0];
+                for (var j = 0; j < arr[i].length; j++) {
+                    if (maxNum < arr[i][j + 1]) {
+                        maxNum = arr[i][j + 1];
+                    }
+                    // console.log(maxNum)
+                }
+                arr2.push(maxNum);
+            }
+          
+            return arr2;
+        }
+        largestOfFour([
+            [4, 5, 1, 3],
+            [13, 27, 18, 26],
+            [32, 35, 37, 39],
+            [1000, 1001, 857, 1]
+        ]);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟新浪插入话题</title>
+</head>
+
+<body>
+    <div>
+        <form>
+            <textarea name="" id="textarea" cols="30" rows="10" ></textarea>
+            <button class="btn" type="button" onclick="textSelect('textarea',1,9)">话题</button>
+        </form>
+    </div>
+    <script>
+        //兼容
+        // if (obj.createTextRange) { //ie
+        //     var range = obj.createTextRange();
+        //     range.moveStart('character', 1);
+        //     range.moveEnd('character', 8);
+        //     range.select();
+
+        // } else { //非ie
+        //     obj.setSelectionRange(1, 8);
+        //     obj.focus();
+        // }
+
+        //选中封装
+        function textSelect(id,a,b){
+            var o = document.getElementById(id);
+            o.innerText="#请在这里输入话题#";
+            //o是当前对象ID，例如文本域对象
+            //a是起始位置，b是终点位置
+            var a = parseInt(a,10),b=parseInt(b,10);
+            var l=o.value.length;
+            if(l){
+                //如果非数值，则表示从起始位置选择到结束位置
+                if(!a){
+                    a=0;
+                };
+                if(!b){
+                    b=0;
+                };
+                //如果值超过长度，则就是当前对象值得长度
+                if(a>l){
+                    a=l;
+                };
+                if(b>l){
+                    b=l;
+                };
+                //如果值为负值，则与长度值相加
+                if(a<0){
+                    a=a+l;
+                };
+                if(b<0){
+                    b=b+l;
+                };
+                if(o.createTextRange){
+                    var range = o.createTextRange();
+                    range.moveStart("character",-l);
+                    range.moveEnd('charactor',-l);
+                    range.moveStart("charactor",a);
+                    range.moveEnd('charactor',b);
+                    range.select();
+                }else{
+                    o.setSelectionRange(a,b);
+                    o.focus();
+
+                }
+            };
+
+        }
+      //  textSelect('textarea',1,9)
+    </script>
+</body>
+
+</html>

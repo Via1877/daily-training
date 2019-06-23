@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function makePassword(password){
+        return function guess(passwordGuess){
+            console.log("guess="+passwordGuess);
+            console.log("pw="+password);
+
+            return passwordGuess === password ;
+        }
+    }
+    // console.log(makePassword("aaa")); 
+    var tryGuess = makePassword('secret'); //tryGuess 是 guess 的函数引用
+    console.log("nope:"+tryGuess("nope")); //tryGuess 传的值是passwordGuess
+    console.log("secret:"+tryGuess("secret"));
+
+    </script>
+</body>
+</html>

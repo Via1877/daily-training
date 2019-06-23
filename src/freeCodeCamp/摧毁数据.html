@@ -9,35 +9,26 @@
 </head>
 
 <body>
-    <p>这个 function 接收多个参数。第一个参数为数组 arr，即为需要操作的原数组。后续的参数均表示需要删除的元素。返回值为操作后的数组
-            比如接收的是 [1, 2, 3, 1, 2, 3] 与 2, 3，那么返回值为 [1, 1]。
-            需要注意的是，如果分割的过程出现剩余，那么返回值的最后一个数组会比较短。比如接收的是 [1, 2, 3] 与 2，那么输出就是 [[1, 2], [3]]</p>
-    <script>
-        // function destroyer(arr, ...nums) {
-        //     // 请把你的代码写在这里
-        //     // console.log(nums)//2,3,5
-        //     for (var i = 0; i < nums.length; i++) {
-        //         for (var j = 0; j < arr.length; j++) {
-        //             // console.log(nums[i]+'=='+arr[j])
-        //             if (nums[i] == arr[j]) {
+        <div class="des"></div>
+        <script>
+          var str = "这个 function 接收多个参数。第一个参数为数组 arr，即为需要操作的原数组。后续的参数均表示需要删除的元素。返回值为操作后的数组比如接收的是 [1, 2, 3, 1, 2, 3] 与 2, 3，那么返回值为 [1, 1]。需要注意的是，如果分割的过程出现剩余，那么返回值的最后一个数组会比较短。比如接收的是 [1, 2, 3] 与 2，那么输出就是 [[1, 2], [3]]";
+          var strArr = str.split('。');
+          for(var i=0;i<strArr.length;i++){
+             var p = document.createElement('p');
+             p.innerHTML=strArr[i];
+             document.querySelector('.des').appendChild(p)
+          }
+            
+          function destroyer(a) {
+            // 请把你的代码写在这里
+                var arr = arguments[0];
+                var args = [].slice.call(arguments); //[Array(6), 2, 3]
+                console.log( args);
+         }
+    
+            destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+        </script>
 
-        //                 //3, 5, 1, 2, 2
-        //                 console.log(seleArr);
-        //                 var seleArr = arr.splice(j, 1);
-        //                 console.log(seleArr);
-        //                 console.log(nums)
-        //             }
-        //         }
-        //     }
-        //     //console.log( arr);
-        // }
-
-        // destroyer([3, 5, 2, 3, 1, 2, 2, 3], 3, 5, 2);
-        function truncate(arr) {
- console.log (arr.slice(0,arr.length-1))
-}
-truncate([1, 2, 3, 4])
-    </script>
 </body>
 
 </html>

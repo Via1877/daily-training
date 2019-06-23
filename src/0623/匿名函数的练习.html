@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>匿名函数的练习</title>
+</head>
+<body>
+    <button id="bake">bake</button>
+    <script>
+        window.onload=function(){
+            var button=document.getElementById('bake');
+            button.onclick = function(){
+                console.log('Time to bake the cookies.');
+                cookies.bake(2500)
+            }
+        };
+        var cookies = {
+            instructions : "Preheat oven to 350...",
+            bake : function(time){
+                console.log("baking thi cookies");
+                setTimeout(done,time);
+            }
+        };
+        function done(){
+            alert(",,,");
+            console.log("Cooling are cool");
+            setTimeout(function(){
+                alert("cookies are cool")
+            },1000)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插槽</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <style>
+    .container{
+        padding:50px;
+        margin:0 auto;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <child></child>
+        <body-content>
+            <template v-slot:header>  
+                <ul >
+                    <li>导航</li>
+                    <li>首页</li>
+                    <li>关于我们</li>
+                    <li>俩系我们</li>
+                </ul>
+            </template> 
+           
+            <template v-slot:footer>
+                    <div >&copy;版权来源</div>
+
+            </template>
+        </body-content>
+        
+    </div>
+
+
+    <script>
+        Vue.component('child',{
+            props:['content'],
+            template:`<div>
+                <p> hello</p> 
+                <slot>Submit</slot>
+               </div>`,
+        });
+        Vue.component("body-content",{
+            template:`
+           <div>
+                <slot name="header">
+                    <h1>我每有传啊</h1>
+                </slot>
+                <div class="container">body content</div>
+                <slot name="footer"></slot>
+            </div>
+            `,
+        })
+        var vm=new Vue({
+            el:"#root"
+        })
+    </script>
+</body>
+</html>

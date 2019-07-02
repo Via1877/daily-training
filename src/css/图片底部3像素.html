@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图片底部3像素</title>
+</head>
+<body>
+  <article>
+    <header>
+      <h1>解决图片底部3像素</h1>
+    </header>
+    <div style="padding-bottom:200px">
+      <section>
+        <h2>之前写页面得时候没有特别注意过这个问题，今天面试被问突然就愣住了。然后就总结整理一下吧！</h2>
+          <div style="background:aqua;width:200px">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562600667&di=8b6f3e8c4d58815f9cd74243ca2b0f82&imgtype=jpg&er=1&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201508%2F01%2F20150801004719_FSk4E.jpeg" width="200px" alt="">
+          </div>
+      </section>
+      <section>
+        <h2>方法一 img加display:block</h2>
+          <div style="background:aqua;width:200px">
+            <img style="display:block" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562600667&di=8b6f3e8c4d58815f9cd74243ca2b0f82&imgtype=jpg&er=1&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201508%2F01%2F20150801004719_FSk4E.jpeg" width="200px" alt="">
+          </div>
+      </section>
+      <section>
+        <h2>方法二 img加vertical-align: “top，text-top，bottom，text-bottom”</h2>
+          <div style="background:aqua;width:200px">
+            <img style="vertical-align: middle" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562600667&di=8b6f3e8c4d58815f9cd74243ca2b0f82&imgtype=jpg&er=1&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201508%2F01%2F20150801004719_FSk4E.jpeg" width="200px" alt="">
+          </div>
+      </section>
+      <section>
+        <h2>方法三 父元素加font-size:0;</h2>
+          <div style="font-size:0;background:aqua;width:200px">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562600667&di=8b6f3e8c4d58815f9cd74243ca2b0f82&imgtype=jpg&er=1&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201508%2F01%2F20150801004719_FSk4E.jpeg" width="200px" alt="">
+          </div>       
+      </section>
+      <section>
+        <h2>方法四 img float:left,别忘了清浮动</h2>
+          <div style="background:aqua;width:200px">
+            <img style="float:left" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562600667&di=8b6f3e8c4d58815f9cd74243ca2b0f82&imgtype=jpg&er=1&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201508%2F01%2F20150801004719_FSk4E.jpeg" width="200px" alt="">
+            <div style="clear:both"></div>
+          </div>       
+      </section>
+      <section>
+        <h2>a包着img</h2>
+        <p>a得高度只有默认得行高，因为是inline元素，所以要block/inline-block</p>
+        <p>img任意一种方法即可</p>
+        <div>
+          <a style="display:block" href="javascript:void(0)" style="background:aqua">
+            <img style="display:block" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562600667&di=8b6f3e8c4d58815f9cd74243ca2b0f82&imgtype=jpg&er=1&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201508%2F01%2F20150801004719_FSk4E.jpeg" width="200px" alt="">
+          </a>
+        </div>
+      </section>
+      <section>
+        <h2>为什么呢</h2>
+        <div>
+          <p>请点击<a href="http://www.html-js.com/article/1758">为什么图片下面总是会多出3-5像素</a></p>
+        </div>
+      </section>
+    </div>
+  </article>
+</body>
+</html>

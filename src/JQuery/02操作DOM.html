@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>操作DOM</title>
+  <style>
+    .highlight {
+        color: #dd1144;
+        background-color: #ffd351;
+    }
+  </style>
+  <script src="jq/jquery.1.12.4.js"></script>
+</head>
+<body>
+  <section>
+    <h1>修改TEXT和HTML</h1>
+    <div>
+        <ul id="test-ul">
+            <li class="js">JavaScript</li>
+            <li name="book">Java &amp; JavaScript</li>
+        </ul>
+    </div>
+  </section>
+  <script>
+    var text = $('#test-ul li[name=book]').text();
+    console.log('text='+text);//text=Java & JavaScript
+    var html = $('#test-ul li[name=book]').html();
+    console.log('html='+html);//html=Java &amp; JavaScript
+  </script>
+  <section>
+    <h1>修改CSS</h1>
+    <div>
+      <P>jQuery对象的css('name', 'value')</P>
+      <p>获取css样式属性值 css('name')</p>
+      <p>清除样式css('name', '')</p>
+      <ul id="test-css">
+          <li class="lang dy"><span>JavaScript</span></li>
+          <li class="lang"><span>Java</span></li>
+          <li class="lang dy"><span>Python</span></li>
+          <li class="lang"><span>Swift</span></li>
+          <li class="lang dy"><span>Scheme</span></li>
+      </ul>
+    </div>
+  </section>
+  <script>
+    $('#test-css li').not('.dy').css('color','red')
+  </script>
+  <section>
+    <h1>练习</h1>
+    <div>
+      <P>分别用css()方法和addClass()方法高亮显示JavaScript</P>
+      <div id="test-highlight-css">
+          <ul>
+              <li class="py"><span>Python</span></li>
+              <li class="js"><span>JavaScript</span></li>
+              <li class="sw"><span>Swift</span></li>
+              <li class="hk"><span>Haskell</span></li>
+          </ul>
+      </div>         
+    </div>
+  </section>
+  <script>
+    var div = $('#test-highlight-css');
+    div.find($('.js')).addClass('highlight')
+  </script>
+  <section>
+    <h1>显示和隐藏DOM</h1>
+    <div>
+      <P>可以设置CSS的display属性为none。不过，要显示这个DOM就需要恢复原有的display属性，这就得先记下来原有的display属性到底是block还是inline还是别的值</P>
+      <p>jQuery直接提供show()和hide()方法，我们不用关心它是如何修改display属性的，总之它能正常工作</p>
+      <div id="hide-js">
+          <ul>
+              <li class="py"><span>Python</span></li>
+              <li class="js"><span>JavaScript</span></li>
+              <li class="sw"><span>Swift</span></li>
+              <li class="hk"><span>Haskell</span></li>
+          </ul>
+          <button class="hide">js隐藏</button><button class="show">js显示</button>
+      </div>  
+      <p>注意，隐藏DOM节点并未改变DOM树的结构，它只影响DOM节点的显示。这和删除DOM节点是不同的。</p>       
+    </div>
+  </section>
+  <script>
+    var js=$('#hide-js').find('.js');
+    $('.hide').bind('click',function(){
+      js.hide()
+    })
+    $('.show').bind('click',function(){
+      js.show()
+    })
+  </script>      
+  <section>
+    <h1>获取DOM信息</h1>
+    <div>
+      <P>宽高直接获取 .width() .height()</P>
+      <p>attr()和removeAttr()方法用于操作DOM节点的属性</p>
+      <p>attr()和prop()对于属性checked处理有所不同</p>
+      <p>.is(':checked'),类似的属性还有selected，处理时最好用is(':selected')</p>
+      <div id="hide-js">
+          <ul>
+              <li class="py"><span>Python</span></li>
+              <li class="js"><span>JavaScript</span></li>
+          </ul>
+      </div> 
+      <div id="test-div" name="Test" start="1">...</div> 
+      <p>注意，隐藏DOM节点并未改变DOM树的结构，它只影响DOM节点的显示。这和删除DOM节点是不同的。</p>       
+      <input id="test-radio1" type="radio" name="test" checked value="1">
+      <input id="test-radio2" type="radio" name="test" checked="checked" value="1">
+    </div>
+  </section>
+  <script>
+    var js=$('#hide-js .js');
+    js.attr('title','haha')
+    $('.hide').bind('click',function(){
+      js.hide()
+    })
+    $('.show').bind('click',function(){
+      js.show()
+    })
+    //操作节点属性
+    var div = $('#test-div')
+    console.log(div.attr("name"))//Test
+    console.log(div.attr("title"))//undefined
+    div.attr('name','我是个div');
+    console.log(div.attr("name"))//我是个div
+    //prop() attr()
+    var radio2 = $('#test-radio2');
+    console.log(radio2.attr('checked')); // 'checked'
+    console.log(radio2.prop('checked')); // true
+    console.log(radio2.is(':checked'))
+  </script> 
+  <section>
+    <h1>操作表单</h1>
+    <div class="form2">
+      <p>对于表单元素，jQuery对象统一提供val()方法获取和设置对应的value属性</p>
+      <input id="test-input" name="email" value="">
+      <select id="test-select" name="city">
+          <option value="BJ" selected>Beijing</option>
+          <option value="SH">Shanghai</option>
+          <option value="SZ">Shenzhen</option>
+      </select>
+      <textarea id="test-textarea">Hello</textarea>
+    </div>
+  </section>
+  <script>
+    var input = $('#test-input'),
+        select = $('#test-select'),
+        textarea = $('#test-textarea');
+    input.bind('change',function(){
+      console.log(input.val('就不让你输入'));
+    })
+    console.log(input.val());
+    console.log(select.val());
+    console.log(textarea.val());
+  </script>      
+</body>
+</html>

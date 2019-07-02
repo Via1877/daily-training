@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件使用的细节点</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+</head>
+<body>
+    <ol>
+        <li>在table,select,ol,ul等，需要包含专门固定的标签中，使用组件，有可能会出错，所以正确的写法，使用 属性is=“组件名”</li>
+        <li>非根组件定义data，必须是个函数，返回对象</li>
+        <li>在vue中如何操作dom：ref="起的名字，用于操作" ref自己起的名字</li>
+        <li>操作多个子组件  绑定监听事件 @delet</li>
+    </ol>
+    <div id="root">
+        <!-- 创建table -->
+        <table>
+            <tbody>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+            </tbody>
+        </table>
+        <!-- 创建select -->
+        <select name="" id="">
+            <option is="myOption"></option>
+            <option is="myOption"></option>
+            <option is="myOption"></option>
+        </select>
+        <!-- 操作dom 点击打印 内容 ref自己起的名字 -->
+        <div ref="hello"
+             @click = 'handleClick' 
+            >
+            hello world 
+        </div>
+             <!-- 操作组件dom 点击打印 内容 ref自己起的名字 -->
+            <counter @change="addTotal" ref="one"></counter>   
+            <counter @change="addTotal" ref="two"></counter>  
+            <div>{{total}}</div> 
+    </div>
+
+    <script>
+        Vue.component('counter',{
+            props:['total'],
+            template:`<div @click='handleClick' >{{number}}</div>`,
+            data:function(){
+                return {
+                    number : 0,
+                }
+            },
+            methods:{
+                handleClick: function () {
+                    this.number ++ ;
+                    this.$emit('change')
+                },
+
+            },
+
+           
+        })
+        Vue.component("row", {
+            template:` <tr> <td> {{ content }} </td>  </tr> `,
+            data: function(){
+                return { 
+                    content: "this is row"
+                }
+            },
+        })
+        Vue.component("myOption",{
+            template:`
+                <option>沈阳</option>
+            `
+        })
+        var vm = new Vue({
+            el:"#root",
+            data:{
+                total:0,
+            },
+            methods:{
+                handleClick: function () {
+                    console.log(this.$refs.hello.innerHTML)//hello world 
+                },
+                addTotal:function(){
+                    this.total = this.$refs.one.number+this.$refs.two.number; 
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

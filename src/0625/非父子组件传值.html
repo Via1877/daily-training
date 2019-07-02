@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>非父子组件传值</title>
+</head>
+<body>
+    <h1>总线机制 (Bus/总线/发布订阅模式/观察者模式)  </h1>
+    <div id="root">
+         <welcome username="username" ></welcome>
+            <formchild v-model="username"></formchild>
+    </div>
+    <script>
+        Vue.prototype.bus = new Vue();
+        var welcome = {
+            props:{username:String},  
+            template:"<div>你好，{{username}}</div>", 
+        },
+        var formchild = {
+            props:['value'],
+            data(){
+                return {
+                    slefName : this.value
+                }
+            },
+            template:`    
+                   <input type="text" 
+                            key="name" 
+                            :value="value"  
+                            @input="changeValue"
+                    >
+            `,
+            methods:{
+                changeValue: function (){    
+                    var value = event.target.value;
+                    this.bus.$emit('input',value);
+                },
+            },
+            mounted: function(){
+                var this_ = this;
+                this.bus.$on('input',function(name){
+                    this_.slefName = name;
+                })
+            }
+        }
+        var vm = new Vue({
+            el:"#root",
+            components:{
+                formchild:formchild,
+                welcome:welcome,
+            },
+            data:{
+                username:'hello',
+            },
+            methods:{
+              
+            }
+        })
+        
+    </script>
+</body>
+</html>

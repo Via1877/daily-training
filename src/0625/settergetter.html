@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>style</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <style>
+        .actives{
+            color:red;
+        }
+        .show{
+            font-size: 43px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 对象绑定 -->
+        <div @click="changeColorObj"
+             :class="{actives:isActived}  " 
+        >对象绑定</div>
+        <!-- 数组绑定 -->
+        <div @click="changeColorArr"
+             :class="[actives,show] " 
+        >数组绑定</div>
+        <p>{{fullName}}</p>
+        <!-- style 方法 -->
+            <!-- 对象绑定 -->
+        <p :style="styleObj"> style </p>
+           <!-- 对象绑定 -->
+           <p :style="[styleObj,{fontSize:'30px'}]"> style </p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data: {
+                firstName:'annie',
+                lastName:"shing",
+                isActived:false,
+                actives:'',
+                show:'',
+                styleObj:{
+                    color:'pink',
+                    fontWeight: 800,
+                }
+            },
+            methods: {
+                changeColorObj:function(){
+                    this.isActived = !this.isActived;
+                },
+                changeColorArr:function(){
+                    this.actives = this.actives === "actives" ? "" : "actives";
+                    this.show = 'show';
+                }
+            },
+            computed: {
+                fullName:{
+                    get: function () {
+                       // console.log(this.firstName + ' ' + this.lastName)
+                        return this.firstName + ' ' + this.lastName;
+                    },
+                    set: function (value) {
+                         var arr = value.split(' ');
+                         this.firstName = arr[0];
+                         this.lastName = arr[1];
+                        console.log(value)
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

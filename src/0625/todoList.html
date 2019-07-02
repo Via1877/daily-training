@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue" type="text">
+            <button @click="handleSubmit">提交</button>
+        </div>
+        <ul>
+            <todo-item v-for="(item,index) of lists" 
+            :key="index" 
+            :content="item"
+            :index = "index"
+            @delet="handelDelete" 
+            >
+        <!-- 父组件在创建子组件时，监听 ，父组件模板里的方法-->
+        </todo-item>
+        </ul>
+    </div>
+
+    <script>
+        //全局组件
+        Vue.component('todo-item', {
+            props: ['content','index'],
+            // 此模板属于 todo-item 的
+            template: `<li>{{index}}{{content}} 
+                         <button @click="deletList">删除</button>  
+                        </li> `,
+            methods: {
+                deletList: function () {
+                    this.$emit('delet',this.index);
+
+                }
+            }
+
+        })
+        //局部组件
+        /*   var TodoItem={
+              template:'<li>item</li>',
+          }; */
+        new Vue({
+            el: '#root',
+            /*   //注册组件
+              components:{
+                  'toso-item':TodoItem,
+              }, */
+            data: {
+                inputValue: 'hello',
+                lists: [],
+            },
+            methods: {
+                handleSubmit: function () {
+                    this.lists.push(this.inputValue);
+                    this.inputValue = '';
+                },
+                handelDelete:function(index){
+                    this.lists.splice(index,1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

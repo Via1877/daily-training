@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>input和v-model</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component v-model="msg"></my-component>
+        msg: {{msg}}
+        <my-counter v-model="num"></my-counter>
+        num: {{num}}
+    </div>
+    <script>
+        Vue.component('my-component', {
+            template: `<div>
+  <input type="text" :value="currentValue" @input="handleInput"/>
+  </div>`,
+            data: function () {
+                return {
+                    currentValue: this.value //将prop属性绑定到data属性上，以便修改prop属性（Vue不允许直接修改prop属性的值）
+                }
+            },
+            props: ['value'], //接收一个 value prop
+            methods: {
+                handleInput(event) {
+                    var value = event.target.value;
+                    this.$emit('input', value); //触发 input 事件，并传入新值
+                }
+            }
+        });
+        Vue.component("my-counter", {
+            template: `<div>
+  <h1>{{value}}</h1>
+  <button @click="plus">+</button>
+  <button @click="minu">-</button>
+  </div>`,
+            props: {
+                value: Number //接收一个 value prop
+            },
+            data: function () {
+                return {
+                    val: this.value
+                }
+            },
+            methods: {
+                plus() {
+                    this.val = this.val + 1
+                    this.$emit('input', this.val) //触发 input 事件，并传入新值
+                },
+                minu() {
+                    if (this.val > 0) {
+                        this.val = this.val - 1
+                        this.$emit('input', this.val) //触发 input 事件，并传入新值
+                    }
+                }
+            }
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello world',
+                num: 0
+            }
+        })
+    </script>
+</body>
+
+</html>

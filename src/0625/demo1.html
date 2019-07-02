@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <p> {{content}}</p>
+        <p v-html="content"></p>
+        <p v-text="content"></p>
+        <p><button @click="handleClick">change hello</button>
+            <span>{{hello}}</span>
+        </p>
+
+    </div>
+
+    <script>
+        new Vue({
+            el:"#root",
+            //template:"<p>这里是模板内同</p>",//覆盖掉了原有的内容
+
+            data:{
+                content:"<span>是否转译</span>",
+                hello:"hello",
+                fruit:"apple",
+            },
+
+            methods:{
+                handleClick : function(){
+                    this.hello="world"; //this.hello 当前实例下 data里的hello
+
+                },
+            },
+
+        })
+    </script>
+</body>
+</html>
